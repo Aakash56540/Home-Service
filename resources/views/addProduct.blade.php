@@ -65,6 +65,7 @@
 
          <form action="{{ route('admin.postAddProduct') }}" method="POST" enctype="multipart/form-data">
                @csrf
+               <h2 class="text-center">Add Service Details Here..</h2>
                <div class="form-group">
                 <label>Service Title</label>   
                <input class="form-control" name="title" type="text" placeholder="Service Title" />

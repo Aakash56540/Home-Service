@@ -71,6 +71,7 @@
          @endif
          <form action="{{ route('admin.postAddEmployee') }}" method="POST">
                @csrf
+               <h2 class="text-center">Add Employee Details Here..</h2>
                <div class="form-group">
                 <label>Employee Name</label>   
                <input class="form-control" name="name" type="text" placeholder="Name" />

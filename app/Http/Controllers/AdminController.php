@@ -24,19 +24,26 @@ class AdminController extends Controller
           'title'=>'required',
           'description'=>'required',
           'price'=>'required',
-          'image'=>'image'
+          'image'=>'image| required'
        ]);
 
-       $product=new Product([
-         'title'=>$request->input('title'),
-         'description'=>$request->input('description'),
-         'price'=>$request->input('price'),
-         'imagePath'=>$request->input('image'),
-       ]);
-
-       //print_r($product);
-       $product->save();
-       echo "INserted product";
+       if($request->hasFile('image'))
+       {
+        $file = $request->file('image');
+        $fileName= $file->getClientOriginalName();
+        $extension = $file->extension();
+        $destination = 'images';
+       
+         $product=new Product([
+           'title'=>$request->input('title'),
+           'description'=>$request->input('description'),
+           'price'=>$request->input('price'),
+           'imagePath'=>$request->file('image')->storeAs($destination,$fileName),
+         ]);
+        }
+       
+        $product->save();
+        return redirect()->route('admin.services')->with('status','Product Inserted Successfully');
 
     }
 
@@ -45,7 +52,7 @@ class AdminController extends Controller
        $product=Product::find($id);
        DB::delete("delete from products where id=?",[$id]);
        return redirect()->route('product.index')->with('success','Product Deleted SuccessFully');
-       //print_r($product);   
+       
     }
 
     public function getUsers(){
