@@ -19,6 +19,6 @@
 <p>Admin can add the product, delete the product, see Employee details etc..</p>
 <img src="admin.png" alt="admin" />
 <p>Admin can also add the service from the backend </p>
-<img src="addroduct.png" alt="addProduct" />
+<img src="addProduct.png" alt="addProduct" />
     </body>
     </html>
